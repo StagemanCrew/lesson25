@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Gabriela:regular" rel="stylesheet" />
+    <style>
+        body{
+            font-family: 'Gabriela';
+        }
+    </style>
+    <title>task-4</title>
+</head>
+<body>
+    <h3>
+        Використовуючи один з АРІ https://github.com/public-apis/public-apis#animals та функцію fetch організувати завантаження та відображення даних.
+    </h3>
+
+    <h4>Random Dog Image</h4>
+    <img id="dog-image" src="#" alt="Random Dog " style="height: 250px;">
+    <button id="fetch-dog">Fetch Random Dog</button>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const dogImage = document.getElementById("dog-image")
+            const fetchDogButton = document.getElementById("fetch-dog")
+
+            // Функція для отримання випадкового зображення собаки з API
+            function fetchRandomDog() {
+                fetch("https://api.thedogapi.com/v1/images/search")
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // Отримайте URL зображення собаки
+                        let imageUrl = data[0].url
+
+                        // Встановіть URL зображення собаки як джерело зображення для <img>
+                        dogImage.src = imageUrl
+                    })
+                    .catch((error) => {
+                        console.error("Помилка при отриманні зображення собаки:", error)
+                    })
+            }
+
+            fetchDogButton.addEventListener("click", fetchRandomDog)
+            // Викликати функцію fetchRandomDog при завантаженні сторінки
+            fetchRandomDog()
+        })
+
+    </script>
+</body>
+</html>

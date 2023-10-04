@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Gabriela:regular" rel="stylesheet" />
+    <style>
+        body{
+            font-family: 'Gabriela';
+        }
+    </style>
+    <title>task-1</title>
+</head>
+<body>
+    <h3>
+        Дано клас PhoneNumber. Створити функцію перетворення до string, при якому на основі номера виводиться оператор (050…. - MTC, 096… - Kyivstar, ...)
+    </h3>
+
+    <script>
+
+        class PhoneNumber {
+            constructor(number) {
+                this.number = number
+            }
+
+            getOperator() {
+                const prefix = this.number.substring(0, 3)
+                if (operatorMap.has(prefix)) {
+                    return operatorMap.get(prefix)
+                } else {
+                    return 'Невідомий оператор'
+                }
+            }
+        }
+
+        // Об'єкт-відображення для відповідності операторів до префіксів номерів
+        const operatorMap = new Map([
+            ['067', 'Kyivstar'],
+            ['068', 'Kyivstar'],
+            ['096', 'Kyivstar'],
+            ['097', 'Kyivstar'],
+            ['098', 'Kyivstar'],
+
+            ['050', 'Vodafone Україна'],
+            ['066', 'Vodafone Україна'],
+            ['095', 'Vodafone Україна'],
+            ['099', 'Vodafone Україна'],
+
+            ['063', 'Lifecell'],
+            ['073', 'Lifecell'],
+            ['093', 'Lifecell'],
+
+            ['091', '3Mob'],
+            ['092', 'PEOPLEnet'],
+            ['094', 'Інтертелеком'],
+        ])
+
+        const phoneNumber = prompt('Введіть ваш номер телефона у форматі 0123456789')
+        if (!phoneNumber || phoneNumber.length !== 10) {
+            document.write(`<h3>Номер введено некоректно</h3>`)
+        } else {
+            const phoneNumberObject = new PhoneNumber(phoneNumber)
+            const operator = phoneNumberObject.getOperator()
+            document.write(`<h3>Номер ${phoneNumber} належить до оператора ${operator}</h3>`)
+        }
+
+    </script>
+</body>
+</html>
+
+<!-- //=====================================================================================================
+        // // Об'єкт-відображення для відповідності операторів до префіксів номерів
+        // const operatorMap = new Map([
+        //     ['067', 'Kyivstar'],
+        //     ['068', 'Kyivstar'],
+        //     ['096', 'Kyivstar'],
+        //     ['097', 'Kyivstar'],
+        //     ['098', 'Kyivstar'],
+
+        //     ['050', 'Vodafone Україна'],
+        //     ['066', 'Vodafone Україна'],
+        //     ['095', 'Vodafone Україна'],
+        //     ['099', 'Vodafone Україна'],
+
+        //     ['063', 'Lifecell'],
+        //     ['073', 'Lifecell'],
+        //     ['093', 'Lifecell'],
+
+        //     ['091', '3Mob'],
+        //     ['092', 'PEOPLEnet'],
+        //     ['094', 'Інтертелеком'],
+        // ])
+
+        // // Функція, яка приймає номер телефону і повертає назву оператора
+        // function getOperatorFromPhoneNumber(phoneNumber) {
+        //     // Вираз, щоб отримати префікс номера
+        //     const prefix = phoneNumber.match(/^\d{3}/)
+        //     if (prefix && operatorMap.has(prefix[0])) {
+        //         return operatorMap.get(prefix[0])
+        //     } else {
+        //         return 'Невідомий оператор'
+        //     }
+        // }
+
+        // // Приклад використання функції
+        // const phoneNumber = prompt('Введіть ваш номер телефона у форматі 0123456789')
+        // const operator = getOperatorFromPhoneNumber(phoneNumber)
+        // document.write(`<h3>Номер ${phoneNumber} належить до оператора ${operator}</h3>`)
+//===================================================================================================== -->
